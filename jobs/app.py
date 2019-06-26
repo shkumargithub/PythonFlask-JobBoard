@@ -17,6 +17,8 @@ def execute_sql(sql, values=(), commit=False, signle=False):
     cursor =  connection.execute(sql, values)
     if commit == True:
         results = connection.commit()
+    else:
+        results = connection.fetchone() if single else cursor.fetchall()
     cursor.close()
     return results
 
